@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VotesApp</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    
+    <!-------------------------------- Navigation bar--------------------------->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-content" aria-expanded="false">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">VotesApp</a>
+        </div>
+        <div class="collapse navbar-collapse" id="collapse-content">
+          <ul class="nav navbar-nav" id="navbar-left">
+            <li class="nava"><a href="/" id="all-polls">All Polls</a></li>
+            <%
+              if(user){
+            %>
+            <li class="nava sn active"><a href="#" id="my-polls">My Polls</a></li>
+            <li class="nava sn"><a href="/new_poll" id="new-poll">New Poll</a></li>
+            <%}%>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" id="navbar-right">
+            <%
+              if(user!=null){
+            %>
+            <li id="drp">
+              <a id="user_name" href="#" class="dropdown-toggle"
+                 data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <%=user.name%>
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu"><li class="dropdown"><a href="#" id="sign-out">Sign out</a></li></ul></li>
+            <% }else{ %>
+            <li><a href="#" class="btn btn-primary navbar-btn" 
+                   style="color:white" id="sign-in">Sign in with Twitter</a></li>
+            <%}%>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-----------------------Body--------------------------->
+    <center>
+      <div id="body" class="body well">
+        <h1>
+          Your Polls
+        </h1>
+        <% if(my_polls && my_polls.length>0){
+          my_polls.forEach(function(e){
+          %>
+          <a href="/polls/<%=e.id%>"><li class="list-group-item"><%=e.title%></li></a>
+        <%
+          });
+        }else if(error){%>
+          <%=error%>
+        <%}else{%>
+          You have not created any polls.
+        <%}%>
+      </div>
+    </center>
+    <script language="javascript" src="/all_polls.js"></script>
+  </body>
+</html>
