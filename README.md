@@ -12,3 +12,4 @@ This app allows-
   - View and vote on everyone's poll
   - View the results of polls in chart form
   
+https://votesapp.glitch.me/
