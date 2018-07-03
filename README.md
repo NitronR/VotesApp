@@ -11,5 +11,3 @@ This app allows-
 * Unauthenticated or authenticated users to :-
   - View and vote on everyone's poll
   - View the results of polls in chart form
-  
-https://votesapp.glitch.me/
